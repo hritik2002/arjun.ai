@@ -2,14 +2,11 @@
 
 import * as z from 'zod'
 import axios from 'axios'
-import { MessageSquare } from 'lucide-react'
+import { Music } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
-// import { toast } from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
-import { ChatCompletionRequestMessage } from 'openai'
 
-// import { BotAvatar } from '@/components/bot-avatar'
 import { Heading } from '@/components/heading'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -17,11 +14,6 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { Empty } from '@/components/empty'
 import { cn } from '@/lib/utils'
-
-// import { Loader } from '@/components/loader'
-// import { UserAvatar } from '@/components/user-avatar'
-// import { useProModal } from '@/hooks/use-pro-modal'
-
 import { formSchema } from './constants'
 import { Loader } from '@/components/loader'
 
@@ -63,7 +55,7 @@ const MusicPage = () => {
       <Heading
         title="Music Generation"
         description="Turn your prompt into music."
-        icon={MessageSquare}
+        icon={Music}
         iconColor="text-emerald-500"
         bgColor="bg-emerald-500/10"
       />
