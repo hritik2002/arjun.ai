@@ -1,5 +1,7 @@
 'use client'
 
+import axios from 'axios'
+import { useState } from 'react'
 import {
   ArrowRight,
   Check,
@@ -10,6 +12,7 @@ import {
   VideoIcon,
   Zap,
 } from 'lucide-react'
+import { toast } from 'react-hot-toast'
 
 import {
   Dialog,
@@ -60,6 +63,21 @@ const tools = [
 
 export const ProModal = () => {
   const proModal = useProModal()
+  const [loading, setLoading] = useState(false)
+
+  const onSubscribe = async () => {
+    try {
+      setLoading(true)
+      const response = await axios.get('/api/stripe')
+
+      window.location.href = response.data.url
+    } catch (error: any) {
+      toast.error('Something went wrong')
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <Dialog open={proModal.isOpen} onOpenChange={proModal.onClose}>
       <DialogContent>
@@ -94,7 +112,13 @@ export const ProModal = () => {
         </DialogHeader>
 
         <DialogFooter>
-          <Button size={'lg'} variant={'premium'} className="w-full">
+          <Button
+            disabled={loading}
+            onClick={onSubscribe}
+            size={'lg'}
+            variant={'premium'}
+            className="w-full"
+          >
             Upgrade
             <Zap className="w-4 h-4 ml-2 fill-white" />
           </Button>

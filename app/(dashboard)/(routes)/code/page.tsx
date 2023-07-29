@@ -9,6 +9,7 @@ import ReactMarkdown from 'react-markdown'
 import { useRouter } from 'next/navigation'
 import { ChatCompletionRequestMessage } from 'openai'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { toast } from 'react-hot-toast'
 
 import { BotAvatar } from '@/components/bot-avatar'
 import { Heading } from '@/components/heading'
@@ -52,7 +53,7 @@ const CodePage = () => {
       if (error?.response?.status === 403) {
         proModal.onOpen()
       } else {
-        // toast.error('Something went wrong.')
+        toast.error('Something went wrong.')
       }
     } finally {
       router.refresh()

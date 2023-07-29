@@ -5,11 +5,10 @@ import axios from 'axios'
 import { MessageSquare } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
-// import { toast } from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
 import { ChatCompletionRequestMessage } from 'openai'
+import { toast } from 'react-hot-toast'
 
-// import { BotAvatar } from '@/components/bot-avatar'
 import { Heading } from '@/components/heading'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -17,11 +16,6 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { Empty } from '@/components/empty'
 import { cn } from '@/lib/utils'
-
-// import { Loader } from '@/components/loader'
-// import { UserAvatar } from '@/components/user-avatar'
-// import { useProModal } from '@/hooks/use-pro-modal'
-
 import { formSchema } from './constants'
 import { Loader } from '@/components/loader'
 import { UserAvatar } from '@/components/user-avatar'
@@ -31,7 +25,6 @@ import { useProModal } from '@/hooks/use-pro-modal'
 const ConversationPage = () => {
   const proModal = useProModal()
   const router = useRouter()
-  // const proModal = useProModal()
   const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([])
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -61,7 +54,7 @@ const ConversationPage = () => {
       if (error?.response?.status === 403) {
         proModal.onOpen()
       } else {
-        // toast.error('Something went wrong.')
+        toast.error('Something went wrong.')
       }
     } finally {
       router.refresh()
