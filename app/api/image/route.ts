@@ -4,7 +4,7 @@ import { auth } from '@clerk/nextjs'
 import { NextResponse } from 'next/server'
 import { Configuration, OpenAIApi } from 'openai'
 const configuration = new Configuration({
-  apiKey: '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',
+  apiKey: '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',
 })
 
 const openai = new OpenAIApi(configuration)
